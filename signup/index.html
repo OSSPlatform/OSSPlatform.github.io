@@ -18,7 +18,7 @@ function reg()
     userinfo.email = null;
     userinfo.phone = null;
     Bmob.initialize("f2764cc5ede8b2ed","012000");
-    Bomb.User.register(userinfo).then(res => {
+    Bmob.User.register(userinfo).then(res => {
         alert(res);
     }).catch(err => {
         alert(err);
