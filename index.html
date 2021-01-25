@@ -3,8 +3,27 @@
 <head>
 <meta charset="utf-8">
 <title>Open Source Storage Platform</title>
+  <script src=https://pig-cmd.github.io/bmobSDK.js></script>
+<script>
+  setTimeout(function(){
+    var username = sessionStorage.getItem("username");
+    if (username != null)
+    {
+      document.getElementById("status").innerHTML = "<input type=button value='Sign Out for OSSP' onclick=javascript:location.href='logout'><p onclick=javascript:location.href=user#" + username + " style='font-size:2em;color:#00ff00'>" + username + "</p>";
+      Bmob.initialize("f2764cc5ede8b2ed","012000");
+      const query = Bmob.Query("userinfo");
+      query.equalTo("username","==",username);
+      query.find().then(res => {
+          console.log(res)
+      }).catch(err => {
+          console.log(err);
+      });
+    }
+  },1000);
+  </script>
 </head>
 <body>
 <center><pre style="font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap">
 <div style="background:black;color:white"><span style="font-size:3em">Open Source Storage Platform</span> <span id=status><input type=button value="Sign in for OSSP" onclick=javascript:location.href='login';></span></div>
 <div id=mainbox><div style="font-size:2em;background:black;color:#00ff00"><a href=signup>Sign up for Open Source Storage Platform</a><br><span style="font-size:2em"> We offer free code storage.</span></div></div>
+</pre></center></body>
