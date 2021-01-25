@@ -19,9 +19,9 @@ function reg()
     userinfo.phone = null;
     Bmob.initialize("f2764cc5ede8b2ed","012000");
     Bmob.User.register(userinfo).then(res => {
-        alert(res);
+        console.log(res);
     }).catch(err => {
-        alert(err);
+        console.log(err);
     });
     
 }
