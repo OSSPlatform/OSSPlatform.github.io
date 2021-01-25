@@ -1,0 +1,28 @@
+
+<title>Signup for Open Source Storage Platform</title>
+<center><pre style="font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap">
+<span style="font-size:3em;background:black;color:white">Signup for Open Source Storage Platform</span>
+<span style="font-size:1.5em">
+Your username<input type=text maxlength=16 id=username>
+Your password<input type=text maxlength=16 id=password>
+<a href=../login target=_blank>Sign in</a>
+<input type=button value=Signup onclick=javascript:reg();>
+<a href=/ >Back</a>
+<script src=https://pig-cmd.github.io/bmobSDK.js></script>
+<script>
+function reg()
+{
+    let userinfo = {};
+    userinfo.username = document.getElementById("username").value;
+    userinfo.password = document.getElementById("password").value;
+    userinfo.email = null;
+    userinfo.phone = null;
+    Bmob.initialize("f2764cc5ede8b2ed","012000");
+    Bomb.User.register(userinfo).then(res => {
+        alert(res);
+    }).catch(err => {
+        alert(err);
+    });
+    
+}
+</script>
