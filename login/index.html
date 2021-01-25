@@ -3,7 +3,7 @@
 <span style="font-size:3em;background:black;color:white">Login for Open Source Storage Platform</span>
 <span style="font-size:1.5em">
 Your username<input type=text maxlength=16 id=username>
-Your password<input type=text maxlength=16 id=password>
+Your password<input type=password maxlength=16 id=password>
 <a href=../signup target=_blank> Don't have an account? Register one </a>
 <input type=button value=Login onclick=javascript:login();>
 <a href=/ >Back</a>
@@ -11,6 +11,16 @@ Your password<input type=text maxlength=16 id=password>
 <script>
 function login()
 {
-    
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    Bmob.initialize("f2764cc5ede8b2ed","012000");
+    Bmob.User.login(username,password).then(res => {
+        console.log(res);
+        sessionStorage.setItem("username",username);
+    }).catch(err => {
+        console.log(err);
+        if (err.code == 101)
+            alert("The login failed\nThe username or password is incorrect");
+    });
 }
 </script>
