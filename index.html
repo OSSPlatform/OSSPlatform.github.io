@@ -9,7 +9,7 @@
     var username = sessionStorage.getItem("username");
     if (username != null)
     {
-      document.getElementById("status").innerHTML = "<input type=button value='Sign Out for OSSP' onclick=javascript:location.href='logout'><p onclick=javascript:location.href=user#" + username + " style='font-size:2em;color:#00ff00'>" + username + "</p>";
+      document.getElementById("status").innerHTML = "<input type=button value='Sign Out for OSSP' onclick=javascript:location.href='logout'><span onclick=javascript:location.href='user#" + username + "' style='font-size:2em;color:#00ff00'>" + username + "</span>";
       Bmob.initialize("f2764cc5ede8b2ed","012000");
       const query = Bmob.Query("userinfo");
       query.equalTo("username","==",username);
