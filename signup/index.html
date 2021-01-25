@@ -20,8 +20,12 @@ function reg()
     Bmob.initialize("f2764cc5ede8b2ed","012000");
     Bmob.User.register(userinfo).then(res => {
         console.log(res);
+        sessionStorage.setItem("username",userinfo.username);
+        location.href = "/";
     }).catch(err => {
         console.log(err);
+        if (err.code == 202)
+            alert("Registration failed\nThe user name repeats");
     });
     
 }
