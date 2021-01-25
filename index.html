@@ -12,13 +12,11 @@
       document.getElementById("status").innerHTML = "<input type=button value='Sign Out for OSSP' onclick=javascript:location.href='logout'><span onclick=javascript:location.href='user#" + username + "' style='font-size:2em;color:#00ff00'>" + username + "</span>";
       Bmob.initialize("f2764cc5ede8b2ed","012000");
       const query = Bmob.Query("userinfo");
-      query.equalTo("username","==",username);
-      query.find().then(res => {
-          console.log(res)
+      query.get(username).then(res => {
+        console.log(res);
       }).catch(err => {
-          console.log(err);
+        console.log(err);
       });
-    }
   },1000);
   </script>
 </head>
