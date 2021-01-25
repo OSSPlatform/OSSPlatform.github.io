@@ -17,6 +17,7 @@ function login()
     Bmob.User.login(username,password).then(res => {
         console.log(res);
         sessionStorage.setItem("username",username);
+        location.href = "/";
     }).catch(err => {
         console.log(err);
         if (err.code == 101)
