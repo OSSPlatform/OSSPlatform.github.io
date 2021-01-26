@@ -18,15 +18,26 @@ function reg()
     userinfo.email = null;
     userinfo.phone = null;
     Bmob.initialize("f2764cc5ede8b2ed","012000");
-    Bmob.User.register(userinfo).then(res => {
-        console.log(res);
-        sessionStorage.setItem("username",userinfo.username);
-        location.href = "/";
-    }).catch(err => {
+    const query = Bmob.Query("userinfo");
+    query.set("username",userinfo.username);
+    query.save().then(res => {
+        var uuid = res.objectId;
+        userinfo.t_ui_uuid = uuid;
+
+Bmob.User.register(userinfo).then(res => {
+             console.log(res);
+             sessionStorage.setItem("username",userinfo.username);
+             location.href = "/";
+        }).catch(err => {
+            console.log(err);
+            if (err.code == 202)
+                 alert("Registration failed\nThe user name repeats");
+        });
+
+    }.catch(err => {
         console.log(err);
-        if (err.code == 202)
-            alert("Registration failed\nThe user name repeats");
-    });
+    }
+   
     
 }
 </script>
