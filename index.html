@@ -7,13 +7,21 @@
 <script>
   setTimeout(function(){
     var username = sessionStorage.getItem("username");
+    var dbuuid = sessionStorage.getItem("uuid");
+    if (dbuuid == null)
+      location.href = "login";
+
     if (username != null)
     {
       document.getElementById("status").innerHTML = "<input type=button value='Sign Out for OSSP' onclick=javascript:location.href='logout'><span onclick=javascript:location.href='user#" + username + "' style='font-size:2em;color:#00ff00'>" + username + "</span>";
       Bmob.initialize("f2764cc5ede8b2ed","012000");
       const query = Bmob.Query("userinfo");
-      query.get(username).then(res => {
-        console.log(res);
+      query.get(dbuuid).then(res => {
+         var db = res;
+         var obj = db.object;
+         if (obj == null)
+            document.getElementById("mainbox").innerHTML = "<span style='font-size:2em;background:black;color:#00ff00'>You don't have any project.<br>We offer free code storage.<br><input type=button value='Create a object' onclick=javascript:location.href='create'><br><input type=button value='Read the guide without any code.' onclick=JavaScript:location.href='rule'><br><input type=button value='About us' onclick=javascript:location.href='about'><br> Due to the limited server storage space, each account is limited to creating 3 projects, with a maximum storage space of 4MB per project.<br><input type=button value='Join us' onclick=javascript:location.href='join'><br> If you join our project, your project creation limit is 20<br> If you make a huge contribution to our project, your project creation limit is 100<br><input type=button value='Donate us' onclick=javascript:location.href='donate'><br> For every $1 you contribute to our project, your project creation limit will increase by 5<br>Our email:<i>OSSP2021@outlook.com</i></span>";
+
       }).catch(err => {
         console.log(err);
       });
