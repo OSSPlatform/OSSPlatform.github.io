@@ -27,6 +27,7 @@ function reg()
 Bmob.User.register(userinfo).then(res => {
              console.log(res);
              sessionStorage.setItem("username",userinfo.username);
+             sessionStorage.setItem("uuid",userinfo.t_ui_uuid);
              location.href = "/";
         }).catch(err => {
             console.log(err);
