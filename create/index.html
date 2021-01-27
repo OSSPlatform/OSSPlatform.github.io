@@ -53,7 +53,7 @@ function createobject()
                 query = Bmob.Query("userinfo");
                 query.set("id",uuid);
                 query.set("object",JSON.stringify(obj));
-                query.save.then(res => {
+                query.save().then(res => {
                   console.log(res);
                   alert("OK");
                 }).catch(err => {
