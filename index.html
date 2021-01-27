@@ -17,6 +17,7 @@
       Bmob.initialize("f2764cc5ede8b2ed","012000");
       const query = Bmob.Query("userinfo");
       query.get(dbuuid).then(res => {
+        console.log(res);
          var db = res;
          var obj = db.object;
          if (obj == null)
