@@ -1,0 +1,68 @@
+<title>Open Source Storage Platform</title>
+  <script src=https://pig-cmd.github.io/bmobSDK.js></script>
+  <center><pre style="font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap">
+<div style="background:black;color:white"><span style="font-size:3em">Open Source Storage Platform</span><input type=button value=Back onclick=javascript:location.href='/'></div>
+<div id=mainbox>
+<div style='font-size:3em'><strong>Please enter the project name</strong><input type=text id=projectname maxlength=32></div>
+
+<div style='font-size:2em'><strong>Please select the project type</strong>
+<input type=radio value=public name=projecttype onclick=javascript:sessionStorage.removeItem('projecttype'); checked>Public
+Anyone can view the project, you can specify that someone else has permission to modify the project
+<input type=radio value=private name=projecttype onclick=javascript:sessionStorage.setItem('projecttype','private');>Private
+You can specify who can view or modify the project
+
+<strong>Description</strong>
+<textarea id=description cols=100 rows=5></textarea>
+
+<input type=button value=Submit onclick=javascript:createobject();>
+<script>
+sessionStorage.removeItem("projecttype");
+function createobject()
+{
+    var username = sessionStorage.getItem("username");
+    var uuid = sessionStorage.getItem("uuid");
+    Bmob.initialize("f2764cc5ede8b2ed","012000");
+    query = Bmob.Query("userinfo");
+    query.get(uuid).then(res => {
+      var obj = res.object;
+      if (obj == null || obj == "" || typeof obj == "undefined")
+        obj = [];
+      else
+        obj = JSON.parse(obj);
+      if (obj.length > 3)
+        alert("The creation of the new project failed\nThe maximum number of items has been reached");
+      else {
+          var pname = document.getElementById("projectname").value;
+          
+          
+              var author = [];
+              author[0] = uuid;
+              var query = Bmob.Query("objects");
+              query.set("name",pname);
+              query.set("author",JSON.stringify(author));
+              if (sessionStorage.getItem('projecttype') == null)
+                query.set("projecttype","public");
+              else
+                query.set("projecttype","private");
+              query.save().then(res => {
+                console.log(res);
+                var objuuid = res.objectId;
+                obj[obj.length] = objuuid;
+                query = Bmob.Query("userinfo");
+                query.set("id",uuid);
+                query.set("object",JSON.stringify(obj));
+                query.save.then(res => {
+                  console.log(res);
+                  alert("OK");
+                }).catch(err => {
+                  console.log(err);
+                });
+              }).catch(err => {
+                console.log(err);
+              });
+          }
+    }).catch(err => {
+        console.log(err);
+    });
+}
+</script>
