@@ -12,7 +12,7 @@ Anyone can view the project, you can specify that someone else has permission to
 You can specify who can view or modify the project
 
 <strong>Description</strong>
-<textarea id=description cols=100 rows=5></textarea>
+<textarea id=description cols=100 rows=5 maxlength=102400></textarea>
 
 <input type=button value=Submit onclick=javascript:createobject();>
 <script>
@@ -42,6 +42,7 @@ function createobject()
               var query = Bmob.Query("objects");
               query.set("name",pname);
               query.set("author",JSON.stringify(author));
+              query.set("description",document.getElementById('description').value);
               if (sessionStorage.getItem('projecttype') == null)
                 query.set("projecttype","public");
               else
