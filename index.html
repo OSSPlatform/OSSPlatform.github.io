@@ -33,15 +33,13 @@
              var q = Bmob.Query("objects");
              q.get(obj[i]).then(res => {
                console.log(res);
-               arr[i] = {};
-               arr[i].uuid = obj[i];
-               arr[i].n = res.name;
              }).catch(err => {
                console.log(err);
              });
              console.log(arr);
              i++;
            }
+           setTimeout(function(){
            var mainbox = "<span style='font-size:2em;background:black;color:#00ff00'>";
            var i = 0;
            while (i != arr.length)
@@ -52,6 +50,7 @@
            mainbox += "<br><br><br>We offer free code storage.<br><input type=button value='Create a object' onclick=javascript:location.href='create'><br><input type=button value='Read the guide without any code.' onclick=JavaScript:location.href='rule'><br><input type=button value='About us' onclick=javascript:location.href='about'><br> Due to the limited server storage space, each account is limited to creating 3 projects, with a maximum storage space of 4MB per project.<br><input type=button value='Join us' onclick=javascript:location.href='join'><br> If you join our project, your project creation limit is 20<br> If you make a huge contribution to our project, your project creation limit is 100<br><input type=button value='Donate us' onclick=javascript:location.href='donate'><br> For every $1 you contribute to our project, your project creation limit will increase by 5<br>Our email:<i>OSSP2021@outlook.com</i></span>";
            document.getElementById("mainbox").innerHTML = mainbox;
            console.log(mainbox);
+           },5000);
          }
       }).catch(err => {
         console.log(err);
