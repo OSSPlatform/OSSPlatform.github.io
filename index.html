@@ -31,7 +31,7 @@
            while (i != obj.length)
            {
              var q = Bmob.Query("objects");
-             q.get(arr[i].uuid).then(res => {
+             q.get(obj[i]).then(res => {
                console.log(res);
                arr[i] = {};
                arr[i].uuid = obj[i];
