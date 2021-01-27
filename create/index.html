@@ -56,7 +56,7 @@ function createobject()
                 query.set("object",JSON.stringify(obj));
                 query.save().then(res => {
                   console.log(res);
-                  location.href = "/project#" + obj[obj.length-1]";
+                  location.href = "/project#" + obj[obj.length-1];
                 }).catch(err => {
                   console.log(err);
                 });
