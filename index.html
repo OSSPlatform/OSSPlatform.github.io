@@ -33,12 +33,14 @@
              arr[i].uuid = obj[i];
              var q = Bmob.Query("objects");
              q.get(arr[i].uuid).then(res => {
+               console.log(res);
                arr[i].name = res.name;
              }).catch(err => {
                console.log(err);
              });
              i++;
            }
+           console.log(arr);
            var mainbox = "<span style='font-size:2em;background:black;color:#00ff00'>";
            var i = 0;
            while (i != arr.length)
