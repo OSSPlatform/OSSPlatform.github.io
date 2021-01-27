@@ -27,6 +27,7 @@
            obj = JSON.parse(obj);
            var i = 0;
            var arr = [];
+           console.log(obj);
            while (i != obj.length)
            {
              arr[i] = {};
@@ -38,9 +39,9 @@
              }).catch(err => {
                console.log(err);
              });
+             console.log(arr);
              i++;
            }
-           console.log(arr);
            var mainbox = "<span style='font-size:2em;background:black;color:#00ff00'>";
            var i = 0;
            while (i != arr.length)
