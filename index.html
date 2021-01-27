@@ -8,7 +8,7 @@
   setTimeout(function(){
     var username = sessionStorage.getItem("username");
     var dbuuid = sessionStorage.getItem("uuid");
-    if (dbuuid == null)
+    if (dbuuid == null && username != null)
       location.href = "login";
 
     if (username != null)
