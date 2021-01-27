@@ -21,6 +21,8 @@ function createobject()
 {
     var username = sessionStorage.getItem("username");
     var uuid = sessionStorage.getItem("uuid");
+    if (username == null)
+      location.href = "/";
     Bmob.initialize("f2764cc5ede8b2ed","012000");
     query = Bmob.Query("userinfo");
     query.get(uuid).then(res => {
