@@ -48,12 +48,12 @@ function savefile()
   } else ocode = JSON.parse(ocode);
   var len = ocode.length;
   ocode[len] = {};
-  ocode.name = url;
-  ocode.description = description;
-  ocode.code = code;
+  ocode[len].name = url;
+  ocode[len].description = description;
+  ocode[len].code = code;
   var date = new Date();
-  ocode.createtime = (date.getMonth() + 1) + " " + date.getDate() + " " + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-  ocode.updatetime = ocode.createtime;
+  ocode[len].createtime = (date.getMonth() + 1) + " " + date.getDate() + " " + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+  ocode[len].updatetime = ocode.createtime;
   var query = Bmob.Query("objects");
   var projectid = sessionStorage.getItem("projectid");
   var obj = ocode;
