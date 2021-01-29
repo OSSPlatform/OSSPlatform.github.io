@@ -21,7 +21,7 @@ query.get(projectid).then(res => {
   console.log(res);
   document.getElementById("projectname").innerHTML = res.name;
   document.getElementById("status").innerHTML = res.projecttype;
-  document.getElementById("descriptiontext").innerHTML = res.description;
+  document.getElementById("description").innerHTML = res.description;
   var i = 0;
   var author = res.author;
   author = JSON.parse(author);
@@ -75,7 +75,7 @@ function savefile()
     query.save().then(res => {
       console.log(res);
       alert("The file was created successfully");
-      location.href = "project#" + projectid;
+      location.href = "/project#" + projectid;
     }).catch(err => {
       console.log(err);
     });
