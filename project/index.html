@@ -19,7 +19,7 @@ query.get(projectid).then(res => {
   author = JSON.parse(author);
   while (i != author.length)
   {
-     document.getElementById("author).innerHTML += "<a href=/user#" + author[i] + " target=_blank>" + author[i] + "</a> ";
+     document.getElementById("author").innerHTML += "<a href=/user#" + author[i] + " target=_blank>" + author[i] + "</a> ";
      i++;
   }
 }).catch(err => {
