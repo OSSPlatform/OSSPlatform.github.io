@@ -19,12 +19,13 @@ while (showpath.length != i)
   else
   {
     var j = 0;
-    var str = "<a href=/project/tree#";
+    var str = "/<a href=/project/tree#" + projectid + "/";
     while (j != i)
     {
       str += showpath[1+j] + "/";
       j++;
     }
+    showpath = showpath.substring(0,showpath.length-1);
     str += ">" + showpath[i] + "</a>";
     document.getElementById("showurl").innerHTML += str;
   }
