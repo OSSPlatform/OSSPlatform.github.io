@@ -25,7 +25,7 @@ while (showpath.length != i)
       str += showpath[1+j] + "/";
       j++;
     }
-    showpath = showpath.substring(0,showpath.length-1);
+    str = str.substring(0,str.length-1);
     str += ">" + showpath[i] + "</a>";
     document.getElementById("showurl").innerHTML += str;
   }
