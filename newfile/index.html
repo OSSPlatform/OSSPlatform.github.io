@@ -7,7 +7,7 @@
 <div id=fileurl></div>
 <textarea cols=200 rows=50 id=code></textarea>
 Description
-<textarea cols=200 rows=5 id=description></textarea>
+<textarea cols=200 rows=5 id=descriptiontext></textarea>
 <input type=button value=Save onclick=javascript:savefile();>
 
 </div>
@@ -21,7 +21,7 @@ query.get(projectid).then(res => {
   console.log(res);
   document.getElementById("projectname").innerHTML = res.name;
   document.getElementById("status").innerHTML = res.projecttype;
-  document.getElementById("description").innerHTML = res.description;
+  document.getElementById("descriptiontext").innerHTML = res.description;
   var i = 0;
   var author = res.author;
   author = JSON.parse(author);
@@ -41,7 +41,7 @@ function savefile()
   var ocode = document.getElementById("hidecode").innerHTML;
   var code = document.getElementById("code").value;
   var url = document.getElementById("newfileurl").value;
-  var description = document.getElementById("description").value;
+  var description = document.getElementById("descriptiontext").value;
   if (ocode == null || ocode == "" || typeof ocode == "undefined")
   {
     ocode = [];
