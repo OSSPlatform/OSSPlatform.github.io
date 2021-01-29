@@ -1,0 +1,28 @@
+<meta charset="utf-8">
+<title>Open Source Storage Platform</title>
+  <script src=https://pig-cmd.github.io/bmobSDK.js></script>
+ <pre style="font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap"><center>
+<div style="background:black;color:white"><span style="font-size:3em">Open Source Storage Platform</span><input type=button value=Back onclick=javascript:location.href='/'></div>
+</center><div id=mainbox><span style='font-size:2em' id=projectname></span><br>Authors:<span id=author></span> | <span id=status></span><br><span id=description></span><br><div id=code></div></div>
+<script>
+Bmob.initialize("f2764cc5ede8b2ed","012000");
+var projectid = location.hash.substring(1);
+sessionStorage.setItem("projectid",projectid);
+var query = Bmob.Query("objects");
+query.get(projectid).then(res => {
+  console.log(res);
+  document.getElementById("projectname").innerHTML = res.name;
+  document.getElementById("status").innerHTML = res.status;
+  document.getElementById("description").innerHTML = res.description;
+  var i = 0;
+  var author = res.author;
+  author = JSON.parse(author);
+  while (i != author.length)
+  {
+     document.getElementById("author).innerHTML += "<a href=/user#" + author[i] + " target=_blank>" + author[i] + "</a> ";
+     i++;
+  }
+}).catch(err => {
+  console.log(err);
+});
+</script>
