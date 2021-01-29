@@ -57,16 +57,18 @@ function savefile()
   var query = Bmob.Query("objects");
   var projectid = sessionStorage.getItem("projectid");
   var obj = ocode;
+  console.log(obj);
   obj = JSON.stringify(obj);
   if (obj.length > 3.8 * 1024 * 1024)
     alert("File creation failed and the total project size is greater than 4MB");
   else {
     query.set("id",projectid);
     query.set("code",obj);
+    console.log(obj);
     query.save().then(res => {
       console.log(res);
       alert("The file was created successfully");
-      location.href = "project#" + projectid;
+      //location.href = "project#" + projectid;
     }).catch(err => {
       console.log(err);
     });
