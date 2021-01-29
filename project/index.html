@@ -56,6 +56,7 @@ query.get(projectid).then(res => {
       if (cfn.indexOf("/") != -1)
       {
         var fico = "https://pig-cmd.github.io/img/folder.png";
+        cfn = cfn.split("/")[0];
         var boolfile = 0;
       }
       if (boolfile)
