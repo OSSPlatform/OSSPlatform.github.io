@@ -60,11 +60,11 @@ query.get(projectid).then(res => {
         var boolfile = 0;
       }
       if (boolfile)
-        document.getElementById("code").innerHTML += "<img src=" + fico + " height=16px width=16px><a onclick=javascript:location.href='edit#" + sessionStorage.getItem('projectid') + "/" + cfn + "';><font color=blue>" + cfn + "</font></a> | Update at <font color=red>" + cfut + "</font> | Create at <font color=red>" + cfct + "</font> | " + cfd;
+        document.getElementById("code").innerHTML += "<img src=" + fico + " height=16px width=16px><a onclick=javascript:location.href='edit#" + sessionStorage.getItem('projectid') + "/" + cfn + "';><font color=blue>" + cfn + "</font></a> | Update at <font color=red>" + cfut + "</font> | Create at <font color=red>" + cfct + "</font> | " + cfd + "<br>";
       else
         if (typeof arr[cfn] == "undefined")
         {
-           document.getElementById("code").innerHTML += "<img src=" + fico + " height=16px width=16px><a onclick=javascript:location.href='tree#" + sessionStorage.getItem('projectid') + "/" + cfn + "';><font color=red>" + cfn + "</font></a>";
+           document.getElementById("code").innerHTML += "<img src=" + fico + " height=16px width=16px><a onclick=javascript:location.href='tree#" + sessionStorage.getItem('projectid') + "/" + cfn + "';><font color=red>" + cfn + "</font></a><br>";
            arr[cfn] = cfn;
         }
       i++;
