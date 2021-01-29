@@ -30,10 +30,12 @@ query.get(projectid).then(res => {
   } else {
     var i = 0;
     file = JSON.parse(file);
+    console.log(file);
     var arr = {};
     while (i != file.length)
     {
       var cfn = file[i].name;
+      console.log(cfn);
       var cfd = file[i].description;
       var cfct = file[i].createtime;
       var cfut = file[i].updatetime;
