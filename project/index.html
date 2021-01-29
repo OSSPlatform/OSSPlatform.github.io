@@ -29,13 +29,14 @@ query.get(projectid).then(res => {
   } else {
     var i = 0;
     file = JSON.parse(file);
+    var arr = {};
     while (i != file.length)
     {
       var cfn = file[i].name;
-      var cfc = file[i].content;
       var cfd = file[i].description;
       var cfct = file[i].createtime;
       var cfut = file[i].updatetime;
+      var boolfile = 1;
       if (cfn.indexOf('.') == -1)
         var fico = "https://pig-cmd.github.io/img/file.png";
       else
@@ -43,8 +44,23 @@ query.get(projectid).then(res => {
         var bname = cfn.split(".")[1];
         if (bname == "txt" || bname == "log" || bname == "html" || bname == "htm" || bname == "asp" || bname == "aspx" || bname == "c" || bname == "cpp" || bname == "java" || bname == "py")
           var fico = "https://pig-cmd.github.io/img/" + bname + ".png";
-        
+        else
+          var fico = "https://pig-cmd.github.io/img/file.png";
       }
+      if (cfn.indexOf("/") != -1)
+      {
+        var fico = "https://pig-cmd.github.io/img/folder.png";
+        var boolfile = 0;
+      }
+      if (boolfile)
+        document.getElementById("code").innerHTML += "<img src=" + fico + " height=16px width=16px><a onclick=javascript:location.href='edit#" + sessionStorage.getItem('projectid') + "/" + cfn + "';><font color=blue>" + cfn + "</font></a> | Update at " + cfut + " | Create at " + cfct + " | " + cfd;
+      else
+        if (typeof arr[cfn] == "undefined")
+        {
+           document.getElementById("code").innerHTML += "<img src=" + fico + " height=16px width=16px><a onclick=javascript:location.href='tree#" + sessionStorage.getItem('projectid') + "/" + cfn + "';><font color=red>" + cfn + "</font></a>";
+           arr[cfn] = cfn;
+        }
+      i++;
     }
   }
 }).catch(err => {
