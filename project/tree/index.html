@@ -3,12 +3,33 @@
   <script src=https://pig-cmd.github.io/bmobSDK.js></script>
  <pre style="font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap"><center>
 <div style="background:black;color:white"><span style="font-size:3em">Open Source Storage Platform</span><input type=button value=Back onclick=javascript:location.href='/'></div>
-</center><div id=mainbox><span style='font-size:2em' id=projectname></span><br>Authors:<span id=author></span> | <span id=status></span><br><span id=description></span><br><span id=nf></span><br><div id=code></div></div>
+</center><div id=mainbox><span style='font-size:2em' id=projectname></span><br>Authors:<span id=author></span> | <span id=status></span><br><span id=description></span><br><span id=showurl></span><br><span id=nf></span><br><div id=code></div></div>
 <script>
 Bmob.initialize("f2764cc5ede8b2ed","012000");
 var projectid = location.hash.substring(1).split("/")[0];
 var path = location.hash.substring(projectid.length + 2);
+var showpath = "main/" + path;
+var i = 0;
+showpath = showpath.split("/");
 path += "/";
+while (showpath.length != i)
+{
+  if (!i)
+    document.getElementById("showurl").innerHTML = "<a href=/project#" + projectid + ">main</a>";
+  else
+  {
+    var j = 0;
+    var str = "<a href=/project/tree#";
+    while (j != i)
+    {
+      str += showpath[1+j] + "/";
+      j++;
+    }
+    str += ">" + showpath[i] + "</a>";
+    document.getElementById("showurl").innerHTML += str;
+  }
+  i++;
+}
 sessionStorage.setItem("path",path);
 document.getElementById("nf").innerHTML = "<a href=/newfile#" + projectid + ">Create a file</a>";
 sessionStorage.setItem("projectid",projectid);
