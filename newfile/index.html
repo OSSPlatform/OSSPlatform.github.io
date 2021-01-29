@@ -75,7 +75,7 @@ function savefile()
     query.save().then(res => {
       console.log(res);
       alert("The file was created successfully");
-      //location.href = "project#" + projectid;
+      location.href = "project#" + projectid;
     }).catch(err => {
       console.log(err);
     });
