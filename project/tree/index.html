@@ -44,7 +44,7 @@ query.get(projectid).then(res => {
       if (cfn.indexOf(path) == -1)
       {
         i++;
-        break;
+        continue;
       }
       console.log(cfn);
       var cfd = file[i].description;
