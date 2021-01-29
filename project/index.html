@@ -3,10 +3,11 @@
   <script src=https://pig-cmd.github.io/bmobSDK.js></script>
  <pre style="font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap"><center>
 <div style="background:black;color:white"><span style="font-size:3em">Open Source Storage Platform</span><input type=button value=Back onclick=javascript:location.href='/'></div>
-</center><div id=mainbox><span style='font-size:2em' id=projectname></span><br>Authors:<span id=author></span> | <span id=status></span><br><span id=description></span><br><a href=/newfile>Create a file</a><br><div id=code></div></div>
+</center><div id=mainbox><span style='font-size:2em' id=projectname></span><br>Authors:<span id=author></span> | <span id=status></span><br><span id=description></span><br><span id=nf></span><br><div id=code></div></div>
 <script>
 Bmob.initialize("f2764cc5ede8b2ed","012000");
 var projectid = location.hash.substring(1);
+document.getElementById("nf").innerHTML = "<a href=/newfile#" + projectid + ">Create a file</a>";
 sessionStorage.setItem("projectid",projectid);
 var query = Bmob.Query("objects");
 query.get(projectid).then(res => {
