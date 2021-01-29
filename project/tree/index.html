@@ -8,6 +8,7 @@
 Bmob.initialize("f2764cc5ede8b2ed","012000");
 var projectid = location.hash.substring(1).split("/")[0];
 var path = location.hash.substring(projectid.length + 2);
+path += "/";
 sessionStorage.setItem("path",path);
 document.getElementById("nf").innerHTML = "<a href=/newfile#" + projectid + ">Create a file</a>";
 sessionStorage.setItem("projectid",projectid);
