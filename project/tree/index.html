@@ -97,7 +97,7 @@ query.get(projectid).then(res => {
       else
         if (typeof arr[cfn] == "undefined")
         {
-           document.getElementById("code").innerHTML += "<img src=" + fico + " height=16px width=16px><a onclick=javascript:location.href='tree#" + sessionStorage.getItem('projectid') + "/" + cfn + "';><font color=red>" + cfn + "</font></a><br>";
+           document.getElementById("code").innerHTML += "<img src=" + fico + " height=16px width=16px><a onclick=javascript:location.href='/project/tree#" + sessionStorage.getItem('projectid') + "/" + cfn + "';><font color=red>" + cfn + "</font></a><br>";
            arr[cfn] = cfn;
         }
       i++;
