@@ -59,11 +59,7 @@ function savefile()
   var obj = ocode;
   console.log(obj);
   var i = 0;
-  while (i != obj.length)
-  {
-    obj[i] = JSON.stringify(obj[i]);
-    i++;
-  }
+  obj[len] = JSON.stringify(obj[len]);
   console.log(obj);
   obj = JSON.stringify(obj);
   if (obj.length > 3.8 * 1024 * 1024)
