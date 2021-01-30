@@ -71,7 +71,7 @@ query.get(projectid).then(res => {
         i++;
         continue;
       } else {
-        cfn = cfn.substring(path.length + 1);
+        cfn = cfn.substring(path.length);
       }
       console.log(cfn);
       var cfd = file[i].description;
