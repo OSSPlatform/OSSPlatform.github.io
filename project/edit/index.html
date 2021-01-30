@@ -54,6 +54,13 @@ query.get(projectid).then(res => {
   console.log(code);
   var filepath = sessionStorage.getItem("file");
   var i = 0;
+  while (i != code.length)
+  {
+    if (typeof code[i] == "string")
+      code[i] = JSON.parse(code[i]);
+    i++;
+    
+  }
   console.log(filepath);
   console.log(code);
   i = 0;
