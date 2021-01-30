@@ -51,7 +51,7 @@ query.get(projectid).then(res => {
   var file = res.code;
   if (file == "" || file == null || typeof file == "undefined")
   {
-      document.getElementById("code").innerHTML = "You doesn't have any files.Please create a file.";
+      document.getElementById("code").innerHTML = "You doesn't have any files in this folder.Please create a file.";
   } else {
     var i = 0;
     file = JSON.parse(file);
