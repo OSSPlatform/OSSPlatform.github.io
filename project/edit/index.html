@@ -36,13 +36,16 @@ query.get(projectid).then(res => {
   document.getElementById("hidecode").innerHTML = res.code;
   var code = res.code;
   code = JSON.parse(code);
+  console.log(code);
   var filepath = sessionStorage.getItem("file");
   var i = 0;
+  console.log(filepath);
   while (i != code.length)
   {
     code[i] = JSON.parse(code[i]);
     i++;
   }
+  console.log(code);
   i = 0;
   while (i != code.length && code[i].name != filepath)
     i++;
