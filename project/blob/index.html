@@ -81,59 +81,6 @@ query.get(projectid).then(res => {
 }).catch(err => {
   console.log(err);
 });
-function savefile()
-{
-  var ocode = document.getElementById("hidecode").innerHTML;
-  var code = document.getElementById("code").value;
-  var url = document.getElementById("newfileurl").value;
-  var description = document.getElementById("descriptiontext").value;
-  if (ocode == null || ocode == "" || typeof ocode == "undefined")
-  {
-    ocode = [];
-  } else ocode = JSON.parse(ocode);
-  var filepath = sessionStorage.getItem("file");
-  var i = 0;
-  while (i != ocode.length)
-  {
-    ocode[i] = JSON.parse(ocode[i]);
-    i++;
-  }
-  i = 0;
-  while (filepath != ocode[i].name)
-    i++;
-  var len = i;
-  console.log(filepath);
-  console.log(len);
-  console.log(ocode);
-  ocode[len] = {};
-  ocode[len].name = url;
-  ocode[len].description = description;
-  ocode[len].code = code;
-  var date = new Date();
-  ocode[len].updatetime = (date.getMonth() + 1) + " " + date.getDate() + " " + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-  var query = Bmob.Query("objects");
-  var projectid = sessionStorage.getItem("projectid");
-  var obj = ocode;
-  console.log(obj);
-  var i = 0;
-  //obj[len] = JSON.stringify(obj[len]);
-  console.log(obj);
-  obj = JSON.stringify(obj);
-  if (obj.length > 3.8 * 1024 * 1024)
-    alert("File edition failed and the total project size is greater than 4MB");
-  else {
-    query.set("id",projectid);
-    query.set("code",obj);
-    console.log(obj);
-    query.save().then(res => {
-      console.log(res);
-      alert("The file was edited successfully");
-      //location.href = "/project#" + projectid;
-    }).catch(err => {
-      console.log(err);
-    });
-  }
-}
 function seeauthorname(i)
 {
   var pid = document.getElementsByName("authorname")[i].innerHTML;
