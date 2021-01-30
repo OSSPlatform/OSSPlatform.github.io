@@ -1,0 +1,149 @@
+<meta charset="utf-8">
+<title>Open Source Storage Platform</title>
+  <script src=https://pig-cmd.github.io/bmobSDK.js></script>
+ <pre style="font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap"><center>
+<div style="background:black;color:white"><span style="font-size:3em">Open Source Storage Platform</span><input type=button value=Back onclick=javascript:location.href='/'></div>
+</center><div id=mainbox><span style='font-size:2em' id=projectname></span><br>Authors:<span id=author></span> | <span id=status></span><br><span id=description></span><br>
+<div id=fileurl></div><input type=button value=Back onclick=javascript:cancelfile();>
+<textarea cols=200 rows=50 id=code readonly></textarea>
+Description
+<textarea cols=200 rows=5 id=descriptiontext readonly></textarea>
+
+
+</div>
+<script>
+function cancelfile()
+{
+  var file = sessionStorage.getItem("file");
+  var projectid = sessionStorage.getItem("projectid");
+  if (file.indexOf("/") == -1)
+    location.href = "/project#" + projectid;
+  else
+  {
+    var address = file.lastIndexOf("/");
+    location.href = "/project/tree#" + projectid + "/" + file.substring(0,address);
+  }
+    
+    
+}
+//OSSP
+Bmob.initialize("f2764cc5ede8b2ed","012000");
+var projectid = location.hash.substring(1).split("/")[0];
+var file = location.hash.substring(2 + projectid.length);
+sessionStorage.setItem("projectid",projectid);
+sessionStorage.setItem("file",file);
+var query = Bmob.Query("objects");
+query.get(projectid).then(res => {
+  console.log(res);
+  document.getElementById("projectname").innerHTML = res.name;
+  document.getElementById("status").innerHTML = res.projecttype;
+  document.getElementById("description").innerHTML = res.description;
+  var i = 0;
+  var author = res.author;
+  author = JSON.parse(author);
+  while (i != author.length)
+  {
+     document.getElementById("author").innerHTML += "<a href=/user#" + author[i] + " target=_blank><span name=authorname>" + author[i] + "</span></a> ";
+    seeauthorname(i);
+     i++;
+  }
+  document.getElementById("fileurl").innerHTML = res.name + "/<input type=text id=newfileurl maxlength=256>";
+  document.getElementById("hidecode").innerHTML = res.code;
+  var code = res.code;
+  code = JSON.parse(code);
+  console.log(code);
+  var filepath = sessionStorage.getItem("file");
+  var i = 0;
+  console.log(filepath);
+  while (i != code.length)
+  {
+    code[i] = JSON.parse(code[i]);
+    i++;
+  }
+  console.log(code);
+  i = 0;
+  while (i != code.length && code[i].name != filepath)
+  {
+    console.log(code[i]);
+    console.log(code[i].name);
+    i++;
+  }
+  document.getElementById("newfileurl").value = code[i].name;
+  document.getElementById("code").value = code[i].code;
+  document.getElementById("descriptiontext").value = code[i].description;
+  
+}).catch(err => {
+  console.log(err);
+});
+function savefile()
+{
+  var ocode = document.getElementById("hidecode").innerHTML;
+  var code = document.getElementById("code").value;
+  var url = document.getElementById("newfileurl").value;
+  var description = document.getElementById("descriptiontext").value;
+  if (ocode == null || ocode == "" || typeof ocode == "undefined")
+  {
+    ocode = [];
+  } else ocode = JSON.parse(ocode);
+  var filepath = sessionStorage.getItem("file");
+  var i = 0;
+  while (i != ocode.length)
+  {
+    ocode[i] = JSON.parse(ocode[i]);
+    i++;
+  }
+  i = 0;
+  while (filepath != ocode[i].name)
+    i++;
+  var len = i;
+  console.log(filepath);
+  console.log(len);
+  console.log(ocode);
+  ocode[len] = {};
+  ocode[len].name = url;
+  ocode[len].description = description;
+  ocode[len].code = code;
+  var date = new Date();
+  ocode[len].updatetime = (date.getMonth() + 1) + " " + date.getDate() + " " + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+  var query = Bmob.Query("objects");
+  var projectid = sessionStorage.getItem("projectid");
+  var obj = ocode;
+  console.log(obj);
+  var i = 0;
+  //obj[len] = JSON.stringify(obj[len]);
+  console.log(obj);
+  obj = JSON.stringify(obj);
+  if (obj.length > 3.8 * 1024 * 1024)
+    alert("File edition failed and the total project size is greater than 4MB");
+  else {
+    query.set("id",projectid);
+    query.set("code",obj);
+    console.log(obj);
+    query.save().then(res => {
+      console.log(res);
+      alert("The file was edited successfully");
+      //location.href = "/project#" + projectid;
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+}
+function seeauthorname(i)
+{
+  var pid = document.getElementsByName("authorname")[i].innerHTML;
+  if (sessionStorage.getItem("authorname_" + pid) == null)
+  {
+    var query = Bmob.Query("userinfo");
+    query.get(pid).then(res => {
+      console.log(res);
+      document.getElementsByName("authorname")[i].innerHTML = res.username;
+      sessionStorage.setItem("authorname_" + pid,res.username);
+    }).catch(err => {
+      console.log(err);
+    });
+  } else {
+    document.getElementsByName("authorname")[i].innerHTML = sessionStorage.getItem("authorname_" + pid);
+  }
+}
+</script>
+<div id=hidecode style='display:none;'></div>
