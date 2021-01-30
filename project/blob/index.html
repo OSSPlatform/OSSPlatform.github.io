@@ -53,7 +53,7 @@ query.get(projectid).then(res => {
     seeauthorname(i);
      i++;
   }
-  document.getElementById("fileurl").innerHTML = res.name + "/<input type=text id=newfileurl maxlength=256>";
+  document.getElementById("fileurl").innerHTML = res.name + "/<div id=newfileurl></div>";
   document.getElementById("hidecode").innerHTML = res.code;
   var code = res.code;
   code = JSON.parse(code);
@@ -61,11 +61,6 @@ query.get(projectid).then(res => {
   var filepath = sessionStorage.getItem("file");
   var i = 0;
   console.log(filepath);
-  while (i != code.length)
-  {
-    code[i] = JSON.parse(code[i]);
-    i++;
-  }
   console.log(code);
   i = 0;
   while (i != code.length && code[i].name != filepath)
@@ -74,7 +69,7 @@ query.get(projectid).then(res => {
     console.log(code[i].name);
     i++;
   }
-  document.getElementById("newfileurl").value = code[i].name;
+  document.getElementById("newfileurl").innerHTML = code[i].name;
   document.getElementById("code").value = code[i].code;
   document.getElementById("descriptiontext").value = code[i].description;
   
