@@ -53,9 +53,9 @@ query.get(projectid).then(res => {
     console.log(code[i].name);
     i++;
   }
-  document.getElementById("newfileurl").value = code.name;
-  document.getElementById("code").value = code.code;
-  document.getElementById("descriptiontext").value = code.description;
+  document.getElementById("newfileurl").value = code[i].name;
+  document.getElementById("code").value = code[i].code;
+  document.getElementById("descriptiontext").value = code[i].description;
   
 }).catch(err => {
   console.log(err);
@@ -72,7 +72,7 @@ function savefile()
   } else ocode = JSON.parse(ocode);
   var filepath = sessionStorage.getItem("file");
   var i = 0;
-  while (filepath != ocode[i])
+  while (filepath != ocode[i].name)
     i++;
   var len = i;
   console.log(filepath);
