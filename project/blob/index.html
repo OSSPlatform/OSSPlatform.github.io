@@ -4,7 +4,7 @@
  <pre style="font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap"><center>
 <div style="background:black;color:white"><span style="font-size:3em">Open Source Storage Platform</span><input type=button value=Back onclick=javascript:location.href='/'></div>
 </center><div id=mainbox><span style='font-size:2em' id=projectname></span><br>Authors:<span id=author></span> | <span id=status></span><br><span id=description></span><br>
-<div id=fileurl></div><input type=button value=Back onclick=javascript:cancelfile();>
+<div id=fileurl></div><input type=button value=Back onclick=javascript:cancelfile();><input type=button value=Edit onclick=javascript:editfile();>
 <textarea cols=200 rows=50 id=code readonly></textarea>
 Description
 <textarea cols=200 rows=5 id=descriptiontext readonly></textarea>
@@ -12,6 +12,12 @@ Description
 
 </div>
 <script>
+function editfile()
+{
+  var file = sessionStorage.getItem("file");
+  var projectid = sessionStorage.getItem("projectid");
+  location.href = "/project/edit#" + projectid + "/" + file;
+}
 function cancelfile()
 {
   var file = sessionStorage.getItem("file");
