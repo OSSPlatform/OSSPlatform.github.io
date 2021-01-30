@@ -13,7 +13,7 @@
 
     if (username != null)
     {
-      document.getElementById("status").innerHTML = "<input type=button value='Sign Out for OSSP' onclick=javascript:location.href='logout'><span onclick=javascript:location.href='user#" + username + "' style='font-size:2em;color:#00ff00'>" + username + "</span>";
+      document.getElementById("status").innerHTML = "<input type=button value='Sign Out for OSSP' onclick=javascript:location.href='logout'><span onclick=javascript:location.href='user#" + dbuuid + "' style='font-size:2em;color:#00ff00'>" + username + "</span>";
       Bmob.initialize("f2764cc5ede8b2ed","012000");
       const query = Bmob.Query("userinfo");
       query.get(dbuuid).then(res => {
@@ -31,12 +31,14 @@
            var i = 0;
            while (i != obj.length)
            {
-             mainbox += "<span onclick=javascript:location.href='project#" + obj[i] + "'>" + obj[i] + "</span><br>";
+             mainbox += "<span onclick=javascript:location.href='project#" + obj[i] + "' name=projectname>" + obj[i] + "</span><br>";
+             seeprojectname(i);
              i++;
            }
            mainbox += "<br><br><br>We offer free code storage.<br><input type=button value='Create a object' onclick=javascript:location.href='create'><br><input type=button value='Read the guide without any code.' onclick=JavaScript:location.href='rule'><br><input type=button value='About us' onclick=javascript:location.href='about'><br> Due to the limited server storage space, each account is limited to creating 3 projects, with a maximum storage space of 4MB per project.<br><input type=button value='Join us' onclick=javascript:location.href='join'><br> If you join our project, your project creation limit is 20<br> If you make a huge contribution to our project, your project creation limit is 100<br><input type=button value='Donate us' onclick=javascript:location.href='donate'><br> For every $1 you contribute to our project, your project creation limit will increase by 5<br>Our email:<i>OSSP2021@outlook.com</i></span>";
            document.getElementById("mainbox").innerHTML = mainbox;
            console.log(mainbox);
+           
           
          }
       }).catch(err => {
@@ -44,7 +46,25 @@
       });
     }
   },1000);
+  function seeprojectname(i)
+{
+  var pid = document.getElementsByName("projectname")[i].innerHTML;
+  if (sessionStorage.getItem("projectname_" + pid) == null)
+  {
+    var query = Bmob.Query("objects");
+    query.get(pid).then(res => {
+      console.log(res);
+      document.getElementsByName("projectname")[i].innerHTML = res.name;
+      sessionStorage.setItem("projectname_" + pid,res.name);
+    }).catch(err => {
+      console.log(err);
+    });
+  } else {
+    document.getElementsByName("projectname")[i].innerHTML = sessionStorage.getItem("projectname_" + pid);
+  }
+}
   </script>
+ 
 </head>
 <body>
 <center><pre style="font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap">
