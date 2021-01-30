@@ -1,0 +1,50 @@
+<meta charset="utf-8">
+<title>Open Source Storage Platform</title>
+  <script src=https://pig-cmd.github.io/bmobSDK.js></script>
+ <pre style="font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap"><center>
+<div style="background:black;color:white"><span style="font-size:3em">Open Source Storage Platform</span><input type=button value=Back onclick=javascript:location.href='/'></div>
+</center><div id=mainbox><span style='font-size:2em' id=username></span><hr><span id=objects></span></div>
+
+<script>
+Bmob.initialize("f2764cc5ede8b2ed","012000");
+var uuid = location.hash.substring(1);
+sessionStorage.setItem("u_uuid",uuid);
+var query = Bmob.Query("userinfo");
+query.get(uuid).then(res => {
+  console.log(res);
+  document.getElementById("username").innerHTML = res.username;
+  var obj = res.object;
+  obj = JSON.parse(obj);
+  var i = 0;
+  while (i != obj.length)
+  {
+    document.getElementById("objects").innerHTML += "<font color=red><a onclick=javascript:location.href='/project#" + obj[i] + "'><span name=projectname>" + obj[i] + "</span></a></font><br>";
+    i++;
+  }
+  var i = 0;
+  while (i != document.getElementsByName("projectname").length)
+  {
+    seeprojectname(i);
+    i++;
+  }
+}).catch(err => {
+  console.log(err);
+});
+function seeprojectname(i)
+{
+  var pid = document.getElementsByName("projectname")[i].innerHTML;
+  if (sessionStorage.getItem("projectname_" + pid) == null)
+  {
+    var query = Bmob.Query("objects");
+    query.get(pid).then(res => {
+      console.log(res);
+      document.getElementsByName("projectname")[i].innerHTML = res.name;
+      sessionStorage.setItem("projectname_" + pid,res.name);
+    }).catch(err => {
+      console.log(err);
+    });
+  } else {
+    document.getElementsByName("projectname")[i].innerHTML = sessionStorage.getItem("projectname_" + pid);
+  }
+}
+</script>
