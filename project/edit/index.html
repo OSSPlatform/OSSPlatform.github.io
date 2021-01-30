@@ -72,6 +72,12 @@ function savefile()
   } else ocode = JSON.parse(ocode);
   var filepath = sessionStorage.getItem("file");
   var i = 0;
+  while (i != ocode.length)
+  {
+    ocode[i] = JSON.parse(ocode[i]);
+    i++;
+  }
+  i = 0;
   while (filepath != ocode[i].name)
     i++;
   var len = i;
