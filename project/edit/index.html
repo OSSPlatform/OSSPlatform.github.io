@@ -96,7 +96,7 @@ function savefile()
   var obj = ocode;
   console.log(obj);
   var i = 0;
-  obj[len] = JSON.stringify(obj[len]);
+  //obj[len] = JSON.stringify(obj[len]);
   console.log(obj);
   obj = JSON.stringify(obj);
   if (obj.length > 3.8 * 1024 * 1024)
@@ -108,7 +108,7 @@ function savefile()
     query.save().then(res => {
       console.log(res);
       alert("The file was edited successfully");
-      location.href = "/project#" + projectid;
+      //location.href = "/project#" + projectid;
     }).catch(err => {
       console.log(err);
     });
