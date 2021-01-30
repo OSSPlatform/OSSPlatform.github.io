@@ -79,7 +79,7 @@ function seeauthorname(i)
   var pid = document.getElementsByName("authorname")[i].innerHTML;
   if (sessionStorage.getItem("authorname_" + pid) == null)
   {
-    var query = Bmob.Query("objects");
+    var query = Bmob.Query("userinfo");
     query.get(pid).then(res => {
       console.log(res);
       document.getElementsByName("authorname")[i].innerHTML = res.name;
