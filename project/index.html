@@ -36,7 +36,8 @@ query.get(projectid).then(res => {
     console.log(file.length);
     while (i != file.length)
     {
-      file[i] = JSON.parse(file[i]);
+      if (typeof file[i] == "string")
+        file[i] = JSON.parse(file[i]);
       console.log(file[i]);
       var cfn = file[i].name;
       console.log(cfn);
