@@ -59,11 +59,13 @@ query.get(projectid).then(res => {
     var arr = {};
     console.log(file.length);
     var path = sessionStorage.getItem("path");
+    console.log(path);
     while (i != file.length)
     {
       file[i] = JSON.parse(file[i]);
       console.log(file[i]);
       var cfn = file[i].name;
+      console.log(cfn);
       if (cfn.indexOf(path) == -1)
       {
         i++;
