@@ -117,8 +117,8 @@ function seeauthorname(i)
     var query = Bmob.Query("userinfo");
     query.get(pid).then(res => {
       console.log(res);
-      document.getElementsByName("authorname")[i].innerHTML = res.name;
-      sessionStorage.setItem("authorname_" + pid,res.name);
+      document.getElementsByName("authorname")[i].innerHTML = res.username;
+      sessionStorage.setItem("authorname_" + pid,res.username);
     }).catch(err => {
       console.log(err);
     });
