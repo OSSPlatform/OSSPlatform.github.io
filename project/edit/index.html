@@ -4,7 +4,7 @@
  <pre style="font-family:Cursive,Helvetica,sans-serif;white-space:pre-wrap"><center>
 <div style="background:black;color:white"><span style="font-size:3em">Open Source Storage Platform</span><input type=button value=Back onclick=javascript:location.href='/'></div>
 </center><div id=mainbox><span style='font-size:2em' id=projectname></span><br>Authors:<span id=author></span> | <span id=status></span><br><span id=description></span><br>
-<div id=fileurl></div>
+<div id=fileurl></div><input type=button value=Cancel onclick=javascript:cancelfile();>
 <textarea cols=200 rows=50 id=code></textarea>
 Description
 <textarea cols=200 rows=5 id=descriptiontext></textarea>
@@ -12,6 +12,20 @@ Description
 
 </div>
 <script>
+function cancelfile()
+{
+  var file = sessionStorage.getItem("file");
+  var projectid = sessionStorage.getItem("projectid");
+  if (file.indexOf("/") == -1)
+    location.href = "/project#" + project;
+  else
+  {
+    var address = file.lastIndexOf("/");
+    location.href = "/project/tree#" + file.substring(0,address);
+  }
+    
+    
+}
 //OSSP
 Bmob.initialize("f2764cc5ede8b2ed","012000");
 var projectid = location.hash.substring(1).split("/")[0];
