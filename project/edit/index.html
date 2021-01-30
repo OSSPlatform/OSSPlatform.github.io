@@ -15,7 +15,7 @@ Description
 //OSSP
 Bmob.initialize("f2764cc5ede8b2ed","012000");
 var projectid = location.hash.substring(1).split("/")[0];
-var file = location.hash.substring(1 + projectid.length);
+var file = location.hash.substring(2 + projectid.length);
 sessionStorage.setItem("projectid",projectid);
 sessionStorage.setItem("file",file);
 var query = Bmob.Query("objects");
