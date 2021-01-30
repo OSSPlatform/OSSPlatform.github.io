@@ -48,7 +48,11 @@ query.get(projectid).then(res => {
   console.log(code);
   i = 0;
   while (i != code.length && code[i].name != filepath)
+  {
+    console.log(code[i]);
+    console.log(code[i].name);
     i++;
+  }
   document.getElementById("newfileurl").value = code.name;
   document.getElementById("code").value = code.code;
   document.getElementById("descriptiontext").value = code.description;
