@@ -17,11 +17,11 @@ function cancelfile()
   var file = sessionStorage.getItem("file");
   var projectid = sessionStorage.getItem("projectid");
   if (file.indexOf("/") == -1)
-    location.href = "/project#" + project;
+    location.href = "/project#" + projectid;
   else
   {
     var address = file.lastIndexOf("/");
-    location.href = "/project/tree#" + file.substring(0,address);
+    location.href = "/project/tree#" + projectid + "/" + file.substring(0,address);
   }
     
     
