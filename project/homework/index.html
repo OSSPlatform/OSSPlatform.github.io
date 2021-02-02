@@ -1,0 +1,29 @@
+<meta charset="utf-8">
+<title>作业提交系统</title>
+<center><pre>
+<font color=red><h1>作业提交系统</h1></font>
+<font color=blue><h3>学生端登录</h3><font>
+请输入学号<input type=number maxlength=2 min=1 max=35 id=num><input type=button value=提交 onclick=javascript:slogin();>
+<hr>
+<font colot=blue><h3>教师端登录</h3></font>
+请选择身份<select id=subject><option value=header>班主任</option><option value=zh>语文老师</option><option value=math>数学老师</option><option value=en>英语老师</option></select>
+请输入密码<input maxlength=16 id=password type=password>
+<input type=button value=登录 onclick=javascript:tlogin();>
+<br>
+Copyright ossplatform.github.io 2021
+<script>
+function tlogin()
+{
+   var uuid = document.getElementById("subject").value;
+   var password = document.getElementById("password").value;
+   if (password == "password")
+   {
+      var obj = {};
+      obj.header = "班主任刘老师";
+      obj.zh = "语文陆老师";
+      obj.math = "数学赵老师";
+      obj.en = "英语李老师";
+      var name = obj[uuid];
+      
+   }
+</script>
