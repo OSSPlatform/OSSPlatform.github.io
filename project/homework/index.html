@@ -24,6 +24,9 @@ function tlogin()
       obj.math = "数学赵老师";
       obj.en = "英语李老师";
       var name = obj[uuid];
-      
+      sessionStorage.setItem("uuid",uuid);
+      sessionStorage.setItem("name",name);
+      sessionStorage.setItem("type","teacher");
+      location.href = "/teacher";
    }
 </script>
