@@ -1,0 +1,36 @@
+<meta charset="utf-8">
+<title>作业提交系统</title>
+<font color=red><h1>作业提交系统</h1></font>
+<span id=name style="color:red"></span>您好！
+<div id=mainbox></div>
+<hr>
+<font color=red>发布作业</font>
+标题<input type=text id=h-name maxlength=32>
+文件上传<select name=h-uploadfile><option value=none>不允许上传文件</option><option value=text/plain>文本文件(不包含二进制数据)</option></select>
+<script>
+var t = sessionStorage.getItem("type");
+if (t == "admin" || t == "teacher")
+{} else location.href = "./";
+
+Bmob.initialize("a3013e2933df71ca","081126");
+var task = Bmob.Query("task");
+task.get("trE2RRRm").then(res => {
+    console.log(res);
+    var work = res.content;
+    if (work == null || work == "")
+      document.getElementById("mainbox").innerHTML = "您还没有发布作业哦";
+    else {
+      work = JSON.parse(work);
+      var i = 0;
+      while(i != work.length)
+      {
+          document.getElementById("mainbox").innerHTML += "<a href=../list/#" + work[i].uuid + ">" + work[i].name + "</a> 发布者："  + work[i].author;
+          i++;
+      }
+    }
+}).catch(err => {
+   console.log(err);
+   alert("错误提示\n" + err);
+});
+</script>
+
