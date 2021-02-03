@@ -1,11 +1,32 @@
 <meta charset="utf-8">
 <title>作业提交系统</title>
 <center><pre>
+<script src=https://pig-cmd.github.io/bmobSDK.js></script>
 <font color=red><h1>作业提交系统</h1></font>
 <br>
-<font color=red><span id=name></span></font>
+姓名：<font color=red><span id=name></span></font>
 <br>
 <div id=mainbox></div>
 <script>
-document.getElementById("mainbox").innerHTML = sessionStorage.getItem("name");
+document.getElementById("name").innerHTML = sessionStorage.getItem("name");
+Bmob.initialize("a3013e2933df71ca","081126");
+var task = Bmob.Query("task");
+task.get("trE2RRRm").then(res => {
+    console.log(res);
+    var work = res.content;
+    if (work == null || work == "")
+      document.getElementById("mainbox").innerHTML = "老师还没有发布作业哦";
+    else {
+      work = JSON.parse(work);
+      var i = 0;
+      while(i != work.length)
+      {
+          document.getElementById("mainbox").innerHTML += "<a href=../upload/#" + work[i].uuid + ">" + work[i].name + "</a> 发布者："  + work[i].author;
+          i++;
+      }
+    }
+}).catch(err => {
+   console.log(err);
+   alert("错误提示\n" + err);
+});
 </script>
