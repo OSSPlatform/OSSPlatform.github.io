@@ -7,7 +7,10 @@
 姓名：<font color=red><span id=name></span></font>
 <br>
 <div id=mainbox></div>
+<a href=../>退出登录</a>
 <script>
+if (sessionStorage.getItem("name") == null)
+  location.href = "../";
 document.getElementById("name").innerHTML = sessionStorage.getItem("name");
 Bmob.initialize("a3013e2933df71ca","081126");
 var task = Bmob.Query("task");
